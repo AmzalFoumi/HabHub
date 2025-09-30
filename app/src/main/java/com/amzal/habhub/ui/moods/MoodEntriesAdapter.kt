@@ -47,7 +47,7 @@ class MoodEntriesAdapter(
         ) {
             binding.tvMoodEmoji.text = mood.emoji
             binding.tvMoodName.text = mood.moodName
-            binding.tvMoodDate.text = formatDate(mood.date)
+            binding.tvMoodDate.text = formatDateTime(mood.timestamp, mood.date)
             
             // Show/hide note based on content
             if (mood.note.isNotBlank()) {
@@ -78,6 +78,74 @@ class MoodEntriesAdapter(
             } catch (e: Exception) {
                 dateString
             }
+        }
+        
+        /**
+         * Formats timestamp to show both date and time.
+         * 
+         * @param timestamp Long timestamp in milliseconds
+         * @param fallbackDate String fallback date if timestamp is invalid
+         * @return String formatted date and time
+         */
+        private fun formatDateTime(timestamp: Long, fallbackDate: String): String {
+            return try {
+                if (timestamp > 0) {
+                    val date = Date(timestamp)
+                    val today = Calendar.getInstance()
+                    val entryDate = Calendar.getInstance().apply { time = date }
+                    
+                    when {
+                        isSameDay(today, entryDate) -> {
+                            // Today - show "Today at HH:mm"
+                            val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+                            "Today at ${timeFormat.format(date)}"
+                        }
+                        isYesterday(today, entryDate) -> {
+                            // Yesterday - show "Yesterday at HH:mm"
+                            val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+                            "Yesterday at ${timeFormat.format(date)}"
+                        }
+                        isWithinWeek(today, entryDate) -> {
+                            // This week - show "Day at HH:mm"
+                            val dayTimeFormat = SimpleDateFormat("EEEE 'at' HH:mm", Locale.getDefault())
+                            dayTimeFormat.format(date)
+                        }
+                        else -> {
+                            // Older - show "MMM dd, yyyy at HH:mm"
+                            val fullFormat = SimpleDateFormat("MMM dd, yyyy 'at' HH:mm", Locale.getDefault())
+                            fullFormat.format(date)
+                        }
+                    }
+                } else {
+                    formatDate(fallbackDate)
+                }
+            } catch (e: Exception) {
+                formatDate(fallbackDate)
+            }
+        }
+        
+        /**
+         * Checks if two calendars represent the same day.
+         */
+        private fun isSameDay(cal1: Calendar, cal2: Calendar): Boolean {
+            return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                   cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)
+        }
+        
+        /**
+         * Checks if entry date was yesterday.
+         */
+        private fun isYesterday(today: Calendar, entryDate: Calendar): Boolean {
+            val yesterday = Calendar.getInstance().apply { add(Calendar.DAY_OF_YEAR, -1) }
+            return isSameDay(yesterday, entryDate)
+        }
+        
+        /**
+         * Checks if entry date is within this week.
+         */
+        private fun isWithinWeek(today: Calendar, entryDate: Calendar): Boolean {
+            val weekAgo = Calendar.getInstance().apply { add(Calendar.DAY_OF_YEAR, -7) }
+            return entryDate.after(weekAgo) && entryDate.before(today)
         }
         
         /**
