@@ -1,0 +1,114 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme for light mode -->
+    <style name="Theme.HabHub" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- PRIMARY COLORS (60% usage) -->
+        <item name="colorPrimary">@color/primary_500</item>
+        <item name="colorPrimaryVariant">@color/primary_700</item>
+        <item name="colorOnPrimary">@color/on_primary_light</item>
+
+        <!-- SECONDARY COLORS (30% usage) -->
+        <item name="colorSecondary">@color/secondary_500</item>
+        <item name="colorSecondaryVariant">@color/secondary_700</item>
+        <item name="colorOnSecondary">@color/on_secondary_light</item>
+
+        <!-- ACCENT COLORS (10% usage)-->
+        <item name="colorTertiary">@color/accent_main</item>
+        <item name="colorTertiaryContainer">@color/neutral_200</item>
+
+
+        <!-- SURFACE & BACKGROUND -->
+        <item name="android:colorBackground">@color/surface_light</item>
+        <item name="colorSurface">@color/surface_light</item>
+        <item name="colorOnSurface">@color/on_surface_light</item>
+        <item name="colorOnBackground">@color/on_background_light</item>
+
+        <!-- ERROR HANDLING -->
+        <item name="colorError">@color/error_main</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- STATUS & NAVIGATION -->
+        <item name="android:statusBarColor">@color/primary_600</item>
+        <item name="android:navigationBarColor">@color/surface_light</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">true</item>
+
+        <!-- ADDITIONAL MATERIAL COLORS -->
+        <item name="colorControlNormal">@color/neutral_500</item>
+        <item name="colorControlActivated">@color/primary_500</item>
+        <item name="colorControlHighlight">@color/primary_100</item>
+    </style>
+
+    <!-- COMPONENT STYLES -->
+
+    <!-- Header/Title Text Style -->
+    <style name="ProTrack.TextAppearance.Headline" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/primary_700</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- Body Text Style -->
+    <style name="ProTrack.TextAppearance.Body" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/on_surface_light</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Caption Text Style -->
+    <style name="ProTrack.TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/on_surface_light</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Today's Total Style (Updated) -->
+    <style name="today_s_tot">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/secondary_700</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- Primary Button Style -->
+    <style name="ProTrack.Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/primary_500</item>
+        <item name="android:textColor">@color/on_primary_light</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <!-- Secondary Button Style -->
+    <style name="ProTrack.Button.Secondary" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/secondary_500</item>
+        <item name="android:textColor">@color/secondary_600</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <!-- Card Style -->
+    <style name="ProTrack.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/surface_light</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardCornerRadius">12dp</item>
+    </style>
+
+    <!-- Progress Indicator Style -->
+    <style name="ProTrack.ProgressIndicator" parent="Widget.MaterialComponents.LinearProgressIndicator">
+        <item name="indicatorColor">@color/accent_main</item>
+        <item name="trackColor">@color/neutral_200</item>
+    </style>
+</resources>
+
+
+<!--<resources xmlns:tools="http://schemas.android.com/tools">-->
+<!--    &lt;!&ndash; Base application theme. &ndash;&gt;-->
+<!--    <style name="Theme.HabHub" parent="Theme.MaterialComponents.DayNight.DarkActionBar">-->
+<!--        &lt;!&ndash; Primary brand color. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/purple_500</item>-->
+<!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+<!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+<!--        <item name="colorSecondary">@color/teal_200</item>-->
+<!--        <item name="colorSecondaryVariant">@color/teal_700</item>-->
+<!--        <item name="colorOnSecondary">@color/black</item>-->
+<!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
+<!--        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--    </style>-->
+<!--</resources>-->
+

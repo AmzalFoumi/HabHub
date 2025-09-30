@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tablet and large screen dimensions -->
+    
+    <!-- Bottom Navigation and FAB Positioning for large screens -->
+    <dimen name="fab_margin_bottom">120dp</dimen> <!-- Even more margin for tablets -->
+    <dimen name="fab_margin_end">24dp</dimen> <!-- Larger end margin for tablets -->
+    <dimen name="content_bottom_padding">120dp</dimen> <!-- More content padding for tablets -->
+    
+    <!-- Fragment Layout Margins for large screens -->
+    <dimen name="fragment_padding">24dp</dimen>
+    <dimen name="card_margin_bottom">20dp</dimen>
+    <dimen name="section_margin_bottom">32dp</dimen>
+</resources>

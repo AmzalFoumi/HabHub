@@ -1,0 +1,29 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <!-- Material Design Spacing System -->
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+    
+    <!-- Fragment Layout Margins -->
+    <dimen name="fragment_padding">16dp</dimen>
+    <dimen name="card_margin_bottom">16dp</dimen>
+    <dimen name="text_margin_bottom">8dp</dimen>
+    <dimen name="section_margin_bottom">24dp</dimen>
+    
+    <!-- Bottom Navigation and FAB Positioning -->
+    <dimen name="bottom_nav_height">56dp</dimen>
+    <dimen name="bottom_nav_spacer">96dp</dimen> <!-- Increased for better clearance -->
+    <dimen name="fab_margin_bottom">100dp</dimen> <!-- Increased FAB margin for larger screens -->
+    <dimen name="fab_margin_end">16dp</dimen>
+    <dimen name="content_bottom_padding">96dp</dimen> <!-- Increased content padding for better clearance -->
+    
+    <!-- Card Spacing -->
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_content_spacing">12dp</dimen>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Landscape orientation dimensions -->
+    
+    <!-- Bottom Navigation and FAB Positioning for landscape -->
+    <dimen name="fab_margin_bottom">110dp</dimen> <!-- Adjusted for landscape -->
+    <dimen name="fab_margin_end">20dp</dimen>
+    <dimen name="content_bottom_padding">100dp</dimen>
+</resources>

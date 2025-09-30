@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    Legacy set of colors that came default with project-->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <!-- PRIMARY COLORS (Orange) - 60% usage -->
+    <color name="primary_50">#FFF3E0</color>
+    <color name="primary_100">#FFE0B2</color>
+    <color name="primary_200">#FFCC80</color>
+    <color name="primary_300">#FFB74D</color>
+    <color name="primary_400">#FFA726</color>
+    <color name="primary_500">#FF6B35</color> <!-- main brand color -->
+    <color name="primary_600">#E65100</color>
+    <color name="primary_700">#BD3200</color>
+    <color name="primary_800">#8A2300</color>
+    <color name="primary_900">#5D1800</color>
+
+    <!-- SECONDARY COLORS (Deep Blue-Gray) - 30% usage -->
+    <!-- professional blue-gray for better contrast -->
+    <color name="secondary_50">#ECEFF1</color>
+    <color name="secondary_100">#CFD8DC</color>
+    <color name="secondary_200">#B0BEC5</color>
+    <color name="secondary_300">#90A4AE</color>
+    <color name="secondary_400">#78909C</color>
+    <color name="secondary_500">#607D8B</color>
+    <color name="secondary_600">#546E7A</color>
+    <color name="secondary_700">#455A64</color>
+    <color name="secondary_800">#37474F</color>
+    <color name="secondary_900">#263238</color>
+
+    <!-- ACCENT COLORS (Vibrant Green for success/achievements) - 10% usage -->
+    <color name="accent_light">#81C784</color>
+    <color name="accent_main">#4CAF50</color>
+    <color name="accent_dark">#388E3C</color>
+
+    <!-- ERROR/WARNING COLORS -->
+    <color name="error_light">#E57373</color>
+    <color name="error_main">#F44336</color>
+    <color name="error_dark">#D32F2F</color>
+
+    <!-- NEUTRAL COLORS -->
+    <color name="neutral_50">#FAFAFA</color>
+    <color name="neutral_100">#F5F5F5</color>
+    <color name="neutral_200">#EEEEEE</color>
+    <color name="neutral_300">#E0E0E0</color>
+    <color name="neutral_400">#BDBDBD</color>
+    <color name="neutral_500">#9E9E9E</color>
+    <color name="neutral_600">#757575</color>
+    <color name="neutral_700">#616161</color>
+    <color name="neutral_800">#424242</color>
+    <color name="neutral_900">#212121</color>
+
+    <!-- SURFACE COLORS -->
+    <color name="surface_light">#FFFFFF</color>
+    <color name="surface_dark">#121212</color>
+    <color name="surface_variant_light">#F5F5F5</color>
+    <color name="surface_variant_dark">#1E1E1E</color>
+
+    <!-- ON-COLOR VARIANTS (Text colors) -->
+    <color name="on_primary_light">#FFFFFF</color>
+    <color name="on_primary_dark">#000000</color>
+    <color name="on_secondary_light">#FFFFFF</color>
+    <color name="on_secondary_dark">#000000</color>
+    <color name="on_surface_light">#000000</color>
+    <color name="on_surface_dark">#FFFFFF</color>
+    <color name="on_background_light">#000000</color>
+    <color name="on_background_dark">#FFFFFF</color>
+
+    <!-- LEGACY COLORS (for backward compatibility) -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- SEMI-TRANSPARENT OVERLAYS -->
+    <color name="overlay_light">#33000000</color> <!-- 20% black -->
+    <color name="overlay_dark">#33FFFFFF</color>  <!-- 20% white -->
+    <color name="scrim">#66000000</color>         <!-- 40% black -->
+
+</resources>

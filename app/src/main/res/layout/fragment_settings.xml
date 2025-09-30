@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/fragment_padding">
+
+        <!-- Header Section -->
+        <TextView
+            android:id="@+id/tvNotificationsTitle"
+            style="@style/ProTrack.TextAppearance.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Notification Settings"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/tvNotificationsSubtitle"
+            style="@style/ProTrack.TextAppearance.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/section_margin_bottom"
+            android:text="Configure your wellness reminders and alerts"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnBackground" />
+
+        <!-- Hydration Reminders Card -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/ProTrack.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Hydration Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="12dp"
+                        android:src="@drawable/ic_water_drop_24"
+                        android:tint="?attr/colorPrimary" />
+
+                    <TextView
+                        style="@style/ProTrack.TextAppearance.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Hydration Reminders"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchHydrationEnabled"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+
+                </LinearLayout>
+
+                <!-- Interval Selection -->
+                <TextView
+                    style="@style/ProTrack.TextAppearance.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Reminder Interval" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderHydrationInterval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:stepSize="15.0"
+                    android:valueFrom="15.0"
+                    android:valueTo="240.0"
+                    android:value="60.0" />
+
+                <TextView
+                    android:id="@+id/tvIntervalValue"
+                    style="@style/ProTrack.TextAppearance.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Every 60 minutes"
+                    android:textAlignment="center"
+                    android:textColor="?attr/colorPrimary" />
+
+                <!-- Test Notification Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTestNotification"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Test Notification"
+                    app:icon="@drawable/ic_water_drop_24"
+                    app:iconGravity="textStart" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Statistics Card -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/ProTrack.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/ProTrack.TextAppearance.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="Notification Statistics"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/tvNotificationStats"
+                    style="@style/ProTrack.TextAppearance.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hydration reminders will help you maintain healthy water intake throughout the day." />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Spacer for bottom navigation -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/content_bottom_padding" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
