@@ -90,33 +90,77 @@ class MoodJournalFragment : Fragment() {
     }
     
     /**
-     * Shows mood entry for selected date.
+     * Shows mood entries for selected date with times.
      * 
      * @param date String selected date in YYYY-MM-DD format
      */
     private fun showMoodForDate(date: String) {
-        val moodForDate = moodEntries.find { it.date == date }
+        val moodsForDate = moodEntries
+            .filter { it.date == date }
+            .sortedBy { it.timestamp }
         
-        if (moodForDate != null) {
-            // Show mood details for the date
-            AlertDialog.Builder(requireContext())
-                .setTitle("Mood for $date")
-                .setMessage("${moodForDate.emoji} ${moodForDate.moodName}\n\n${moodForDate.note}")
-                .setPositiveButton("Edit") { _, _ ->
-                    showAddMoodDialog(moodForDate, moodEntries.indexOf(moodForDate))
+        if (moodsForDate.isNotEmpty()) {
+            // Build message showing all moods for the date with times
+            val formattedDate = formatDateForDisplay(date)
+            val moodDetails = buildString {
+                moodsForDate.forEach { mood ->
+                    val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+                    val time = timeFormat.format(Date(mood.timestamp))
+                    append("$time - ${mood.emoji} ${mood.moodName}")
+                    if (mood.note.isNotBlank()) {
+                        append("\n   \"${mood.note}\"")
+                    }
+                    append("\n\n")
                 }
+            }.trimEnd()
+            
+            val dialog = AlertDialog.Builder(requireContext())
+                .setTitle("Moods for $formattedDate")
+                .setMessage(moodDetails)
                 .setNegativeButton("Close", null)
-                .show()
+            
+            // If only one mood, allow editing
+            if (moodsForDate.size == 1) {
+                dialog.setPositiveButton("Edit") { _, _ ->
+                    val mood = moodsForDate.first()
+                    showAddMoodDialog(mood, moodEntries.indexOf(mood))
+                }
+            } else {
+                // Multiple moods - show option to add new one
+                dialog.setPositiveButton("Add New") { _, _ ->
+                    showAddMoodDialog()
+                }
+            }
+            
+            dialog.show()
         } else {
             // No mood entry for this date
+            val formattedDate = formatDateForDisplay(date)
             AlertDialog.Builder(requireContext())
-                .setTitle("No mood entry")
-                .setMessage("You haven't logged your mood for $date. Would you like to add one?")
+                .setTitle("No mood entries")
+                .setMessage("You haven't logged any moods for $formattedDate. Would you like to add one?")
                 .setPositiveButton("Add Mood") { _, _ ->
                     showAddMoodDialog()
                 }
                 .setNegativeButton("Cancel", null)
                 .show()
+        }
+    }
+    
+    /**
+     * Formats date string for user-friendly display.
+     * 
+     * @param dateString String date in YYYY-MM-DD format
+     * @return String formatted date for display
+     */
+    private fun formatDateForDisplay(dateString: String): String {
+        return try {
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("EEEE, MMM dd, yyyy", Locale.getDefault())
+            val date = inputFormat.parse(dateString)
+            outputFormat.format(date ?: Date())
+        } catch (e: Exception) {
+            dateString
         }
     }
     
@@ -242,6 +286,7 @@ class MoodJournalFragment : Fragment() {
     
     /**
      * Updates mood trend chart with recent mood data.
+     * Shows ALL mood entries from the last 7 days chronologically.
      */
     private fun updateMoodChart() {
         val chart = binding.moodChart
@@ -252,36 +297,44 @@ class MoodJournalFragment : Fragment() {
             return
         }
         
-        // Get last 7 days of mood data
-        val last7Days = moodEntries
-            .filter { isWithinLastWeek(it.date) }
-            .sortedBy { it.date }
+        // Get all mood entries from the last 7 days, sorted chronologically
+        val sevenDaysAgo = Calendar.getInstance().apply {
+            add(Calendar.DAY_OF_YEAR, -7)
+        }.timeInMillis
         
-        if (last7Days.isEmpty()) {
+        val recentMoods = moodEntries
+            .filter { it.timestamp >= sevenDaysAgo }
+            .sortedBy { it.timestamp }
+        
+        if (recentMoods.isEmpty()) {
             chart.clear()
             chart.setNoDataText("No mood data for the past week")
             return
         }
         
-        // Create chart entries
+        // Create chart entries - each mood gets its own point
         val entries = mutableListOf<Entry>()
-        val labels = mutableListOf<String>()
+        val chartLabels = mutableListOf<String>()
         
-        last7Days.forEachIndexed { index, mood ->
+        recentMoods.forEachIndexed { index, mood ->
             val moodValue = getMoodValue(mood.emoji)
             entries.add(Entry(index.toFloat(), moodValue))
-            labels.add(formatDateForChart(mood.date))
+            chartLabels.add(formatTimestampForChart(mood.timestamp))
         }
         
         // Create dataset
         val dataSet = LineDataSet(entries, "Mood Trend").apply {
             color = Color.parseColor("#FF6B35")  // Primary color
             setCircleColor(Color.parseColor("#FF6B35"))
-            lineWidth = 3f
-            circleRadius = 6f
+            lineWidth = 2f
+            circleRadius = if (entries.size > 20) 4f else 6f // Smaller circles for more data points
             setDrawValues(false)
             setDrawFilled(true)
             fillColor = Color.parseColor("#FFEBE0")  // Primary 50
+            mode = LineDataSet.Mode.CUBIC_BEZIER  // Smooth curves
+            cubicIntensity = 0.15f
+            setDrawCircleHole(false)
+            setDrawHighlightIndicators(true) // Show indicators when touched
         }
         
         // Configure chart
@@ -293,17 +346,22 @@ class MoodJournalFragment : Fragment() {
             // Configure X-axis
             xAxis.apply {
                 position = XAxis.XAxisPosition.BOTTOM
-                valueFormatter = IndexAxisValueFormatter(labels)
+                valueFormatter = IndexAxisValueFormatter(chartLabels)
                 granularity = 1f
                 setDrawGridLines(false)
+                setLabelCount(minOf(chartLabels.size, 8), false) // Limit labels to prevent overcrowding
+                labelRotationAngle = -45f // Rotate labels for better readability
+                textSize = 10f
             }
             
             // Configure Y-axis
             axisLeft.apply {
-                axisMinimum = 0f
-                axisMaximum = 5f
+                axisMinimum = 0.5f
+                axisMaximum = 5.5f
                 setLabelCount(6, true)
                 setDrawGridLines(true)
+                gridColor = Color.parseColor("#E0E0E0")
+                textColor = Color.parseColor("#666666")
             }
             
             axisRight.isEnabled = false
@@ -338,21 +396,22 @@ class MoodJournalFragment : Fragment() {
      * Converts emoji to numeric value for chart.
      * 
      * @param emoji String mood emoji
-     * @return Float numeric mood value (0-5)
+     * @return Float numeric mood value (1-5)
      */
     private fun getMoodValue(emoji: String): Float {
         return when (emoji) {
-            "😢" -> 1f  // Sad
-            "😟" -> 1.5f // Worried
-            "😤" -> 2f   // Frustrated
-            "😴" -> 2.5f // Tired
-            "😐" -> 3f   // Neutral
-            "🤔" -> 3f   // Thoughtful
-            "😊" -> 4f   // Happy
-            "😌" -> 4f   // Peaceful
-            "🥰" -> 4.5f // Grateful
-            "🤩" -> 5f   // Excited
-            else -> 3f   // Default neutral
+            "�", "�😢", "😞" -> 1f    // Very Sad
+            "😟", "😔", "😕" -> 1.8f  // Worried/Down
+            "😤", "😠", "😡" -> 2.2f  // Frustrated/Angry
+            "😴", "😪", "🥱" -> 2.5f  // Tired/Sleepy
+            "😐", "😑", "🤐" -> 3f    // Neutral/Meh
+            "🤔", "🙂", "😯" -> 3.3f  // Thoughtful/Okay
+            "😊", "🙂", "😄" -> 4f    // Happy
+            "😌", "😇", "🥲" -> 4.2f  // Peaceful/Content
+            "🥰", "😍", "💕" -> 4.5f  // Grateful/Loved
+            "🤩", "😆", "🥳" -> 5f    // Excited/Amazing
+            "😂", "🤣", "🎉" -> 5f    // Joyful/Celebration
+            else -> 3f                // Default neutral
         }
     }
     
@@ -371,6 +430,49 @@ class MoodJournalFragment : Fragment() {
         } catch (e: Exception) {
             dateString
         }
+    }
+    
+    /**
+     * Formats timestamp for chart display with day and time.
+     * 
+     * @param timestamp Long timestamp in milliseconds
+     * @return String formatted timestamp for chart
+     */
+    private fun formatTimestampForChart(timestamp: Long): String {
+        return try {
+            val date = Date(timestamp)
+            val today = Calendar.getInstance()
+            val entryDate = Calendar.getInstance().apply { time = date }
+            
+            val dayFormat = SimpleDateFormat("MMM dd", Locale.getDefault())
+            val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            
+            // Show different formats based on how recent the entry is
+            when {
+                isSameDay(today, entryDate) -> timeFormat.format(date) // Just time for today
+                isWithinDays(entryDate, 7) -> "${dayFormat.format(date)}\n${timeFormat.format(date)}" // Date + time for this week
+                else -> dayFormat.format(date) // Just date for older entries
+            }
+        } catch (e: Exception) {
+            "Unknown"
+        }
+    }
+    
+    /**
+     * Checks if two calendars represent the same day.
+     */
+    private fun isSameDay(cal1: Calendar, cal2: Calendar): Boolean {
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+               cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)
+    }
+    
+    /**
+     * Checks if date is within specified number of days from now.
+     */
+    private fun isWithinDays(entryDate: Calendar, days: Int): Boolean {
+        val now = Calendar.getInstance()
+        val daysAgo = Calendar.getInstance().apply { add(Calendar.DAY_OF_YEAR, -days) }
+        return entryDate.after(daysAgo) && entryDate.before(now)
     }
 
     override fun onDestroyView() {
