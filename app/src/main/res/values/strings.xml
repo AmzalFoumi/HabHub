@@ -3,4 +3,39 @@
     <string name="title_habits">Habits</string>
     <string name="title_mood_journal">Moods</string>
     <string name="title_settings">Settings</string>
+
+    <!--    Habit Tracker Strings-->
+    <string name="daily_habits">Daily Habits</string>
+    <string name="todays_progress_default">Today\'s Progress: 0% (0/0)</string>
+    <string name="habits_note_emoji">📝</string>
+    <string name="no_habits_yet">No habits yet</string>
+    <string name="tap_to_add_first_habit">Tap the + button to add your first habit</string>
+    <string name="add_new_habit">Add New Habit</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="habit_name">Habit Name</string>
+    <string name="created_today">Created today</string>
+    
+    <!-- Mood Journal Strings -->
+    <string name="mood_journal">Mood Journal</string>
+    <string name="how_are_you_feeling_today">How are you feeling today?</string>
+    <string name="weekly_mood_trend">Weekly Mood Trend</string>
+    <string name="mood_calendar">Mood Calendar</string>
+    <string name="recent_mood_entries">Recent Mood Entries</string>
+    <string name="mood_note_emoji">📝</string>
+    <string name="no_mood_entries_yet">No mood entries yet</string>
+    <string name="tap_to_add_first_mood">Tap the + button to log your first mood entry</string>
+    <string name="how_are_you_feeling">How are you feeling?</string>
+    <string name="choose_your_mood">Choose your mood:</string>
+    <string name="save_mood">Save Mood</string>
+    
+    <!-- Notification Settings Strings -->
+    <string name="notification_settings">Notification Settings</string>
+    <string name="configure_wellness_reminders">Configure your wellness reminders and alerts</string>
+    <string name="hydration_reminders">Hydration Reminders</string>
+    <string name="reminder_interval">Reminder Interval</string>
+    <string name="every_60_minutes">Every 60 minutes</string>
+    <string name="test_notification">Test Notification</string>
+    <string name="notification_statistics">Notification Statistics</string>
+    <string name="hydration_reminder_description">Hydration reminders will help you maintain healthy water intake throughout the day.</string>
 </resources>

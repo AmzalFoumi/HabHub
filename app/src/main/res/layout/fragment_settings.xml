@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="Notification Settings"
+            android:text="@string/notification_settings"
             android:textAlignment="center" />
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/section_margin_bottom"
-            android:text="Configure your wellness reminders and alerts"
+            android:text="@string/configure_wellness_reminders"
             android:textAlignment="center"
             android:textColor="?attr/colorOnBackground" />
 
@@ -69,7 +69,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Hydration Reminders"
+                        android:text="@string/hydration_reminders"
                         android:textStyle="bold" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="Reminder Interval" />
+                    android:text="@string/reminder_interval" />
 
                 <com.google.android.material.slider.Slider
                     android:id="@+id/sliderHydrationInterval"
@@ -103,7 +103,7 @@
                     style="@style/ProTrack.TextAppearance.Caption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Every 60 minutes"
+                    android:text="@string/every_60_minutes"
                     android:textAlignment="center"
                     android:textColor="?attr/colorPrimary" />
 
@@ -114,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Test Notification"
+                    android:text="@string/test_notification"
                     app:icon="@drawable/ic_water_drop_24"
                     app:iconGravity="textStart" />
 
@@ -140,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    android:text="Notification Statistics"
+                    android:text="@string/notification_statistics"
                     android:textStyle="bold"
                     android:textColor="?attr/colorPrimary" />
 
@@ -149,7 +149,7 @@
                     style="@style/ProTrack.TextAppearance.Caption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hydration reminders will help you maintain healthy water intake throughout the day." />
+                    android:text="@string/hydration_reminder_description" />
 
             </LinearLayout>
 
