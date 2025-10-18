@@ -19,7 +19,7 @@
             style="@style/ProTrack.TextAppearance.Headline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Daily Habits"
+            android:text="@string/daily_habits"
             android:textAlignment="center"
             android:layout_marginBottom="@dimen/card_margin_bottom" />
 
@@ -41,7 +41,7 @@
                     style="@style/ProTrack.TextAppearance.Body"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Today's Progress: 0% (0/0)"
+                    android:text="@string/todays_progress_default"
                     android:textStyle="bold"
                     android:layout_marginBottom="@dimen/text_margin_bottom" />
 
@@ -77,7 +77,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="📝"
+                android:text="@string/habits_note_emoji"
                 android:textSize="48sp"
                 android:layout_marginBottom="16dp" />
 
@@ -85,7 +85,7 @@
                 style="@style/ProTrack.TextAppearance.Body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No habits yet"
+                android:text="@string/no_habits_yet"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
@@ -93,7 +93,7 @@
                 style="@style/ProTrack.TextAppearance.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tap the + button to add your first habit" />
+                android:text="@string/tap_to_add_first_habit" />
 
         </LinearLayout>
 

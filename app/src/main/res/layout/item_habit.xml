@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:text="Habit Name" />
+                    android:text="@string/habit_name" />
 
                 <TextView
                     android:id="@+id/tvHabitDescription"
@@ -55,7 +55,7 @@
                     android:textSize="12sp"
                     android:textColor="?android:attr/textColorSecondary"
                     android:layout_marginTop="4dp"
-                    android:text="Created today" />
+                    android:text="@string/created_today" />
 
             </LinearLayout>
 
